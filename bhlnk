@@ -1,0 +1,191 @@
+#!/bin/bash
+
+# Entry point. patchvs (the per-ROM patch pipeline) lives here so it is
+# easy to find; everything else, including command dispatch, is in
+# bin/patchvs.sh, run from the repo root like before (dir=$(pwd)).
+
+patchvs() {
+  log_start PatchMushrom Main
+  # Features recorded by add_cap for ro.hypervs.caps; start from none.
+  rm -f "$dir/rom_caps"
+
+  exbrand=$(getprop 'ro.oplus.image.system_ext.brand')
+
+  Root || return 1
+  device_platform || return 1
+  firmware_add || return 1
+  patch_init_ro_auto || return 1
+  patch_recovery_adb_auto
+  #patch_system_adb_auto
+  patch_pad_noril || return 1
+  patch_bootstate_prop_auto || return 1
+  patch_vbmeta_selinux_auto || return 1
+
+  vbmetas || return 1
+  patch_ota_key || return 1
+  debloat
+  rwprivapp
+  #patchhosts
+
+  download_latest_vstools_apk
+  sync_vstools_privapp_permissions || return 1
+  manual_add true "madd_vst"
+
+  if [[ -d "$dir/module/update/${brand}_madd_theme_${os}/product/media/theme/default/maml" ]]; then
+    for maml in product mi_ext/product; do
+      [[ -d "$dir/img_temp/$maml/media/theme/default/maml" ]] &&
+        sudo find "$dir/img_temp/$maml/media/theme/default/maml" -mindepth 1 -delete
+    done
+  fi
+  manual_add true "${brand}_madd_base_${os}"
+  manual_add true "${brand}_madd_${isType}_${os}"
+  manual_add true "${brand}_madd_ggassistant_${os}"
+
+  # Keep the ROM's own rear-screen presets (meta|content/rearscreen): they
+  # differ per device, the madd has none, and ThemeManager builds the default
+  # sub-screen widget list from them; without them the rear screen is empty.
+  if [[ -d "$dir/module/update/${brand}_madd_theme_${os}" ]]; then
+    for precust in product mi_ext/product; do
+      [[ -d "$dir/img_temp/$precust/etc/precust_theme" ]] &&
+        sudo find "$dir/img_temp/$precust/etc/precust_theme" -mindepth 1 -depth \
+          ! -path '*/rearscreen' ! -path '*/rearscreen/*' \
+          \( ! -type d -o -empty \) -delete
+    done
+  fi
+  manual_add true "${brand}_madd_theme_${os}"
+  manual_add true "${brand}_overlay_${os}"
+  #manual_add true "mosey"
+
+  auto_add "${brand}_auto_base_${os}"
+  auto_add "${brand}_auto_${device}_${os}"
+  auto_add "${brand}_auto_${isType}_${os}"
+
+  if [[ $brand == "HyperOS" ]]; then
+    mv2sys "com.miui.gallery"
+    mv2sys "com.miui.notes"
+    mv2sys "com.android.calendar"
+    mv2sys "com.miui.calculator"
+    mv2sys "com.miui.creation"
+    mv2sys "com.android.soundrecorder"
+    mv2sys "com.miui.mediaeditor"
+    mv2sys "com.miui.weather2"
+    mv2sys "com.xiaomi.aiasst.vision"
+  fi
+
+  manual_add true temp_perm
+
+  apk_scan_w
+
+  backend || exit 1
+
+  if [[ $brand == "HyperOS" ]]; then
+    device_feature
+    thermal_refresh_rate
+    game_thermal_off
+    hotword_module_version
+    #dolby
+
+    miui-services || exit 1
+    miui-framework || exit 1
+
+  elif [[ $brand == "ColorOS" ]]; then
+    #patch_oplus_aizerofs_camera_access || return 1
+    #patch_oplus_camera_vendor_tags || return 1
+    oplus-camera-unit-sdk
+    #patch_oplus_default_touch_rate || return 1
+
+    del_feature "oplus.software.startup_strategy_restrict"
+    del_feature "oplus.software.hans_restriction"
+    del_feature "com.oplus.battery.phoneusage.screenon.hide"
+    del_feature "oplus.software.powerkey_disbale_turnoff_torch"
+
+    oplus-framework || exit 1
+    oplus-services || exit 1
+    oplus-service-jobscheduler
+    oplus-lbs-services
+    oplus-telephony-common
+    oplus-subsystem-service
+    oplus-subsystem-service-ext
+    subsys-channel-lock-plugin
+  fi
+
+  framework || exit 1
+  services || exit 1
+  #settingsprovider
+
+  if [[ $brand == "ColorOS" ]]; then
+    opsettings
+    accessibilityassistant
+    opsystemui
+    launcher
+    external
+    telecom
+    notificationm
+    nfc
+    lockscreen
+    aimemory
+    aiassistant
+    gesture
+    sidebar
+    #gallery3d
+    opaod
+    #opcamera
+    oshare
+    safecenter
+    engineermode
+    exsystemservice
+    appdetail
+    opbattery
+    #ums
+  fi
+
+  if [[ $brand == "HyperOS" ]]; then
+    misystemui
+    if android_version_at_least 17; then
+      plugincc
+      ThemeManager
+      HyperOSModDevice
+      MiuiHomeNative
+    else
+      MiuiHome
+      personalassistant
+      plugin
+      gallery
+      ThemeManager
+    fi
+    PowerKeeper
+    misettings
+    teleservice
+    telecom
+    contractprovider
+    contact
+    security
+    external
+    joyose
+    securityadd
+    miaod
+    phrase
+    lbe
+    intentresolver
+    micamera
+    mediaeditor
+    subscreen
+  fi
+
+  # All patched APK/JAR outputs have already been copied back into img_temp.
+  # Do not carry decompile/rebuild workspaces into the image-build phase on CI.
+  if [[ "${CI_LOW_DISK:-false}" == "true" && -d "$dir/jar_temp" ]]; then
+    rm -rf -- "$dir/jar_temp" || {
+      log_fail PatchMushrom jar_temp "cannot release patch workspace"
+      return 1
+    }
+    log_event info PatchMushrom jar_temp Clean "released before image build"
+  fi
+
+  build
+
+  log_done PatchMushrom Main
+
+}
+
+source "$PWD/bin/patchvs.sh" "$@"

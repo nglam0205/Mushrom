@@ -1,0 +1,105 @@
+{
+  "feature": "Advanced profile spoofing",
+  "recommended_mode": "single_json",
+  "single_json": {
+    "setting_key": "vs_vp_profiles",
+    "fallback_setting_key": "vs_advanced_profiles",
+    "description": "Store every advanced profile in one Settings.Global JSON string. VsProps parses it into a cached package index, then looks up only the current package.",
+    "root_formats": [
+      "JSONArray of profile objects",
+      "JSONObject with a profiles array",
+      "JSONObject with an advanced_profiles array"
+    ],
+    "priority": "If many profiles contain the same package, the later profile in the array has higher priority.",
+    "profile_schema": {
+      "enabled": "optional boolean, default true",
+      "packages": "array of package names",
+      "packageNames": "alias for packages",
+      "packageObj": "alias for packages",
+      "pkg": "single package or comma/space separated package names",
+      "package": "alias for pkg",
+      "packageName": "alias for pkg",
+      "build": "optional object for android.os.Build fields",
+      "props": "alias for build",
+      "version": "optional object for android.os.Build.VERSION fields",
+      "custom_props": "optional custom reflection fields"
+    },
+    "build_fields": [
+      "MANUFACTURER",
+      "MODEL",
+      "FINGERPRINT",
+      "BRAND",
+      "PRODUCT",
+      "DEVICE",
+      "ID",
+      "TYPE",
+      "TAGS"
+    ],
+    "version_fields": [
+      "SECURITY_PATCH",
+      "RELEASE",
+      "INCREMENTAL",
+      "SDK_INT"
+    ],
+    "supported_value_types": [
+      "boolean",
+      "bool",
+      "int",
+      "integer",
+      "long",
+      "float",
+      "double",
+      "string"
+    ],
+    "example": {
+      "profiles": [
+        {
+          "enabled": true,
+          "packages": [
+            "com.miui.weather2",
+            "com.miui.notes"
+          ],
+          "build": {
+            "MANUFACTURER": "Google",
+            "BRAND": "google",
+            "MODEL": "Pixel 10 Pro XL",
+            "DEVICE": "mustang",
+            "PRODUCT": "mustang",
+            "FINGERPRINT": "google/mustang/mustang:16/BD3A.250721.001.B7/13955164:user/release-keys"
+          },
+          "version": {
+            "RELEASE": "16",
+            "SDK_INT": 36,
+            "SECURITY_PATCH": "2025-07-05",
+            "INCREMENTAL": "13955164"
+          },
+          "custom_props": {
+            "miui.os.Build": {
+              "IS_GLOBAL_BUILD": true,
+              "IS_INTERNATIONAL_BUILD": true
+            },
+            "miuix.os.Build": {
+              "IS_INTERNATIONAL_BUILD": true
+            }
+          }
+        },
+        {
+          "packages": [
+            "com.android.soundrecorder"
+          ],
+          "build": {
+            "DEVICE": "nezha"
+          }
+        }
+      ]
+    }
+  },
+  "legacy_slot_mode": {
+    "status": "still supported",
+    "profile_count_key": "vs_vp_count",
+    "default_count": 3,
+    "max_count": 100,
+    "prefix_format": "vs_{index}_vp_",
+    "note": "Used only when no matching profile is found in vs_vp_profiles."
+  }
+}

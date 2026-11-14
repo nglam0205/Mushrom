@@ -1,0 +1,7 @@
+on boot
+    setprop ro.sf.lcd_density ${vs.display.lcd_density}
+    setprop ro.vendor.oplus.market.name ${ro.vendor.oplus.market.enname}
+
+on post-fs-data
+    exec - system system -- /system/bin/rm -rf /data/system/package_cache
+    mkdir /data/system/package_cache 0700 system system

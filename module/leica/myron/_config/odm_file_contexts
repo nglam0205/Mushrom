@@ -1,0 +1,2 @@
+/odm/lib64/camera/plugins/com\.xiaomi\.plugin\.mileicafilter\.so u:object_r:vendor_file:s0
+/odm/etc/camera/leica_filter_param\.bin u:object_r:vendor_configs_file:s0

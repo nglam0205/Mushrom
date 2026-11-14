@@ -1,0 +1,37 @@
+<app_feature name="com.oplus.ota.brand" args="String:oneplus-exp"/>
+<app_feature name="com.android.settings.region_picker"/>
+<app_feature name="com.android.settings.euex_version"/>
+<app_feature name="com.oplus.ai.magicstuido.enable_h5_account"/>
+<app_feature name="com.oplus.googlepay.support">
+	<StringList args="true"/>
+</app_feature>
+<app_feature name="com.oplus.ai.support_smart_voice" args="boolean:true"/>
+<app_feature name="com.oplus.smartsidebar.scene_rules_url" args="String:https://sidebar-apps-in.allawnos.com"/>
+<app_feature name="com.android.phone.exp_uaprofile_url" args="String:https://ua-prof-sg.allawnofs.com/resource/ua-PROF/"/>
+<app_feature name="com.oplus.smartanalysis.rule_server_host" args="String:https://iwisdom-apps-in.allawnos.com"/>
+<app_feature name="com.oplus.assistantscreen.app_recommend_card_enable"/>
+<app_feature name="com.oplus.note.cloud_url_host" args="String:https://i-in01a-ocloud.heytapmobile.com"/>
+<app_feature name="com.oplus.note.speech_url_domain" args="String:atot-si-in.allawnos.com"/>
+<app_feature name="com.oplus.weather.service.weather_host" args="String:https://weather-server-in.allawnos.com"/>
+<app_feature name="com.android.systemui.cn_signal_ui" args="boolean:false"/>
+<app_feature name="oplus.call.summary.support_languages" args="StringList:language">
+    <StringList name="language" args="vi"/>
+    <StringList name="language" args="en"/>
+    <StringList name="language" args="hi"/>
+    <StringList name="language" args="id"/>
+    <StringList name="language" args="ms"/>
+    <StringList name="language" args="zh"/>
+    <StringList name="language" args="th"/>
+    <StringList name="language" args="zh-TW"/>
+</app_feature>
+<app_feature name="com.oplus.assistant.quick.engine.enable"/>
+<app_feature name="com.oplus.aiunit.tools.transmit">
+	<StringList args="CHANNEL_CONFIG_TYPE_KEY:1"/>
+	<StringList args="STORAGE_CLOUD_VENDOR_TYPE:3"/>
+	<StringList args="KMS_PUBLIC_KEY:MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA6Hba2YJYlvdW8K/lP+Ws93GR4tU1fnfBkjpkp8a3cISnYx1DJlOy2tl2dByTyqlws0kujaGwARANbKz1KTOKhWFd0KGxiDdChJ3q4pUob0TntKob5xoA6grShzoIwm1uD0Cqzjg1b5XsvJXxq0Qe4JochjQb/huTNCybPQf9CLT5xAiAORmN4BikRb43BPxnahywKV9t3ias/rgKte/DteL/NskamX+/j+1M3XG8pSiD16wc75Qgb1ATKqan6zMWHYaQi0z+s9qZGkdS1B6jPM7j/K4Fomshyyha3T542aUlg8WUvnXVkcKAzl07PyPmjZHYfobzU9EdJ/TGyPhxlwIDAQAB"/>
+	<StringList args="ACCESS_KEY:AKIAV5GZBTXQL6WJNZPZ"/>
+	<StringList args="SECRET_KEY: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"/>
+	<StringList args="END_POINT:https://s3-accelerate.eu-west-3.amazonaws.com"/>
+	<StringList args="REGION:eu-west-3"/>
+	<StringList args="ACCELERATE_MODE_ENABLE:true"/>
+</app_feature>

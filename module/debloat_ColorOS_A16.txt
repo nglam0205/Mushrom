@@ -1,0 +1,8 @@
+oplus.feature.control_cn_gms.xml
+oplus_google_cn_gms_features.xml
+AndroidAutoStubCN
+GooglePlayServicesUpdater
+ConfigUpdater
+OVoiceManagerSkillService.apk
+OVoiceManagerService.apk
+HeyTapSpeechAssist.apk

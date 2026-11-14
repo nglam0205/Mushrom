@@ -1,0 +1,4 @@
+AOSP otatools from ci.android.com
+branch: aosp-android-latest-release
+build: 16373615 (aosp_cf_x86_64_only_phone-userdebug)
+files: bin/delta_generator + the lib64 libraries it links

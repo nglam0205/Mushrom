@@ -1,0 +1,16 @@
+# Pipeline file dưới odm/etc/camera/xiaomi/ cần chèn node mileicafilter, kèm
+# anchor = NodeInstance đứng NGAY SAU node Leica (lấy từ máy Leica thật nezha).
+# Bỏ trống anchor = chèn trước node com.xiaomi.plugin.filter (mặc định injector).
+# file                        anchor(before)
+satsnapshot.json
+leicasnapshot.json
+dualbokehsnapshot.json
+manualsnapshot.json
+manualrawsnapshot.json
+manualultrarawsnapshot.json
+satburstsnapshot.json         BurstJpegInstance0
+legendsnapshot.json           WatermarkInstance0
+legendmonopansnapshot.json    virtualInstanceForM3
+satpreview.json               VirtualInstance0    YUV420_NV12
+manualpreview.json            Y2YSplitInstance1    YUV420_NV12
+dualbokehpreview.json         Y2YSplitInstance1    YUV420_NV12

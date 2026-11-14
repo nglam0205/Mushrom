@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='utf-8'?>
+<filter-conf>
+    <filter-name>app_systemui_oplus_media_controller_config</filter-name>
+    <version>20250612</version>
+    <config
+        disableAnim ="0"/>
+    <whitelist>
+        <packageName name="com.tencent.qqmusic"/>
+        <packageName name="com.netease.cloudmusic"/>
+        <packageName name="com.heytap.music"/>
+        <packageName name="com.kugou.android"/>
+        <packageName name="com.tencent.karaoke"/>
+        <packageName name="cn.kuwo.player"/>
+        <packageName name="com.luna.music"/>
+        <packageName name="cmccwm.mobilemusic"/>
+        <packageName name="cn.missevan"/>
+        <packageName name="com.kugou.android.lite"/>
+        <packageName name="cn.wenyu.bodian"/>
+        <packageName name="com.duoduo.opera"/>
+        <packageName name="com.kugou.viper"/>
+        <packageName name="com.tencent.qqmusicpad"/>
+        <packageName name="com.aichang.yage"/>
+        <packageName name="com.blueocean.musicplayer"/>
+        <packageName name="com.tencent.blackkey"/>
+        <packageName name="com.e5837972.kgt"/>
+        <packageName name="com.android.mediacenter"/>
+        <packageName name="com.kugou.dj"/>
+        <packageName name="fm.xiami.main"/>
+        <packageName name="com.tencent.qqmusiclite"/>
+        <packageName name="com.blueocean.huoledj"/>
+        <packageName name="com.ting.mp3.android"/>
+        <packageName name="com.kk.xx.music"/>
+        <packageName name="ht.nct"/>
+        <packageName name="com.ximalaya.ting.android"/>
+        <packageName name="com.kuaiyin.player"/>
+        <packageName name="com.changba"/>
+        <packageName name="fm.qingting.qtradio"/>
+        <packageName name="com.yibasan.lizhifm"/>
+        <packageName name="com.shinyv.cnr"/>
+        <packageName name="app.podcast.cosmos"/>
+        <packageName name="com.tencent.radio"/>
+        <packageName name="com.kuaiyuhudong.djshow"/>
+        <packageName name="com.yusi.chongchong"/>
+        <packageName name="bubei.tingshu"/>
+        <packageName name="io.dushu.fandengreader"/>
+        <packageName name="com.tencent.weread"/>
+        <packageName name="com.soundcloud.android"/>
+        <packageName name="com.dywx.larkplayer"/>
+        <packageName name="com.shazam.android"/>
+        <packageName name="com.smule.singandroid"/>
+        <packageName name="com.andromo.dev445584.app545102"/>
+        <packageName name="com.anghami"/>
+        <packageName name="com.recorder.music.mp3.musicplayer"/>
+        <packageName name="com.atpc"/>
+        <packageName name="com.bandlab.bandlab"/>
+        <packageName name="com.karaoke.offline.download.free.karaoke.music"/>
+        <packageName name="com.shaiban.audioplayer.mplayer"/>
+        <packageName name="com.jamendoandoutly.mainpakage"/>
+        <packageName name="com.spotify.music"/>
+        <packageName name="com.ezen.ehshig"/>
+        <packageName name="com.hiby.music"/>
+        <packageName name="com.tan8"/>
+        <packageName name="org.videolan.vlc"/>
+        <packageName name="video.player.videoplayer"/>
+        <packageName name="com.ted.android"/>
+        <packageName name="com.ss.android.ugc.aweme"/>
+        <packageName name="com.ss.android.ugc.aweme.lite"/>
+        <packageName name="com.mxtech.videoplayer.ad"/>
+        <packageName name="com.apple.android.music"/>
+        <packageName name="com.luojilab.player"/>
+        <packageName name="com.tencent.wehear"/>
+        <packageName name="com.qidian.QDReader"/>
+        <packageName name="com.chaozh.iReaderFree"/>
+        <packageName name="com.kmxs.reader"/>
+        <packageName name="com.salt.music"/>
+        <packageName name="com.zing.mp3"/>
+        <packageName name="com.google.android.apps.youtube.music"/>
+        <packageName name="com.extreamsd.usbaudioplayerpro"/>
+    </whitelist>
+</filter-conf>

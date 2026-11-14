@@ -1,0 +1,21 @@
+# Local Gradle/IDE state
+.gradle/
+.idea/
+.kotlin/
+local.properties
+captures/
+*.iml
+*.hprof
+
+# Outputs generated while building the APK modules
+**/build/
+**/.cxx/
+**/.externalNativeBuild/
+*.apk
+*.aab
+*.ap_
+*.dex
+
+# Local signing material
+*.jks
+*.keystore

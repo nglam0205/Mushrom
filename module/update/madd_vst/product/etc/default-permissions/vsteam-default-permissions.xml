@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' standalone='yes' ?>
+
+<exceptions>
+    <exception package="com.bhlnk.vsteam">
+        <permission name="android.permission.RECORD_AUDIO" fixed="true"/>
+        <permission name="android.permission.READ_MEDIA_AUDIO" fixed="true"/>
+    </exception>
+</exceptions>
